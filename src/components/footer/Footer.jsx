@@ -7,43 +7,11 @@ const Footer = () => {
         </p>
       </h5>
       <div>
-        <ul className="flex flex-wrap items-center gap-3 sm:flex-nowrap md:gap-10">
-          <li>
-            <a
-              target="blank"
-              href="mailto:hello@simmmple.com"
-              className="text-base font-medium text-gray-600 hover:text-gray-600"
-            >
-              Support
-            </a>
-          </li>
-          <li>
-            <a
-              target="blank"
-              href="https://simmmple.com/licenses"
-              className="text-base font-medium text-gray-600 hover:text-gray-600"
-            >
-              License
-            </a>
-          </li>
-          <li>
-            <a
-              target="blank"
-              href="https://simmmple.com/terms-of-service"
-              className="text-base font-medium text-gray-600 hover:text-gray-600"
-            >
-              Terms of Use
-            </a>
-          </li>
-          <li>
-            <a
-              target="blank"
-              href="https://blog.horizon-ui.com/"
-              className="text-base font-medium text-gray-600 hover:text-gray-600"
-            >
-              Blog
-            </a>
-          </li>
+        <ul className="flex flex-wrap items-center gap-3 text-base font-medium text-gray-600 hover:text-gray-600 sm:flex-nowrap md:gap-10">
+          <li>Support</li>
+          <li>License</li>
+          <li>Terms of Use</li>
+          <li>Blog</li>
         </ul>
       </div>
     </div>
