@@ -4,28 +4,38 @@ import Checkbox from "components/checkbox";
 
 export default function SignIn() {
   return (
-    <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+    <div className="flex items-center justify-center w-full h-full px-2 mb-4 16 mt- md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       {/* Sign in section */}
-      <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+      <div className="mt-[5vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
           Sign In
         </h4>
-        <p className="mb-9 ml-1 text-base text-gray-600">
+        {/* <p className="ml-1 text-base text-gray-600 mb-9">
           Enter your email and password to sign in!
-        </p>
+        </p> */}
         <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
-          <div className="rounded-full text-xl">
+          <div className="text-xl rounded-full">
             <FcGoogle />
           </div>
           <h5 className="text-sm font-medium text-navy-700 dark:text-white">
             Sign In with Google
           </h5>
         </div>
-        <div className="mb-6 flex items-center  gap-3">
-          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-full h-px bg-gray-200 dark:bg-navy-700" />
           <p className="text-base text-gray-600 dark:text-white"> or </p>
-          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
+          <div className="w-full h-px bg-gray-200 dark:bg-navy-700" />
         </div>
+        {/* Name */}
+        <InputField
+          variant="auth"
+          extra="mb-3"
+          label="Name*"
+          placeholder="simmmple"
+          id="name"
+          type="text"
+        />
+        
         {/* Email */}
         <InputField
           variant="auth"
@@ -45,8 +55,18 @@ export default function SignIn() {
           id="password"
           type="password"
         />
+
+        {/* Confirm Password */}
+        <InputField
+          variant="auth"
+          extra="mb-3"
+          label="Confirm Password*"
+          placeholder="Min. 8 characters"
+          id="confirm_password"
+          type="confirm_password"
+        />
         {/* Checkbox */}
-        <div className="mb-4 flex items-center justify-between px-2">
+        <div className="flex items-center justify-between px-2 mb-4">
           <div className="flex items-center">
             <Checkbox />
             <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
@@ -64,7 +84,7 @@ export default function SignIn() {
           Sign In
         </button>
         <div className="mt-4">
-          <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
+          <span className="text-sm font-medium text-navy-700 dark:text-gray-600">
             Not registered yet?
           </span>
           <a
