@@ -97,6 +97,32 @@ export default function SignIn() {
       }
     }
   };
+
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    console.log(e.target.files);
+    setSelectedFile(e.target.files[0]);
+  };
+  const handleResume = (e) => {
+    const formData = new FormData();
+    formData.append("file", selectedFile);
+
+    fetch(
+      "https://a1c5-2409-40c0-7c-3581-9126-78d3-40f0-21ae.ngrok-free.app/resume_parse",
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error uploading file:", error);
+      });
+  };
   return (
     <div className="16 mt- mb-4 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       {/* Sign in section */}
@@ -257,7 +283,7 @@ export default function SignIn() {
                 >
                   Upload Files
                 </label>
-                <div {...getRootProps()}>
+                {/* <div {...getRootProps()}>
                   <input {...getInputProps()} />
                   <Box
                     p={4}
@@ -294,7 +320,14 @@ export default function SignIn() {
                       />
                     )}
                   </div>
-                )}
+                )} */}
+                <input
+                  class="mb-3 block w-full appearance-none rounded border py-3 px-4 leading-tight text-gray-700 focus:outline-none "
+                  id="grid-first-name"
+                  type="file"
+                  placeholder="upload file"
+                  onClick={handleFileChange}
+                ></input>
               </div>
             </ModalBody>
 
@@ -302,7 +335,9 @@ export default function SignIn() {
               <Button colorScheme="blue" mr={3} onClick={onClose}>
                 Close
               </Button>
-              <Button variant="ghost">Upload</Button>
+              <Button variant="ghost" onClick={handleResume}>
+                Upload Resume
+              </Button>
             </ModalFooter>
           </ModalContent>
         </Modal>
