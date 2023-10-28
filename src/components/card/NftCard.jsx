@@ -4,11 +4,12 @@ import Card from "components/card";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "context/app-context";
 import { logDOM } from "@testing-library/react";
+import { Box } from "@chakra-ui/react";
 
 const NftCard = ({ title, author, price, image, bidders, extra, id }) => {
   const [heart, setHeart] = useState(true);
   const navigate = useNavigate();
-  const { setKey, key } = useApp();
+  const { setKey, key, data } = useApp();
   return (
     <Card
       extra={`flex flex-col w-full h-full !p-4 3xl:p-![18px] bg-white ${extra}`}
@@ -70,17 +71,25 @@ const NftCard = ({ title, author, price, image, bidders, extra, id }) => {
               {/* Current Bid: {price} <span>ETH</span> */}
             </p>
           </div>
-          <button
-            onClick={() => {
-              navigate("/ProjectDetails");
-              console.log(id);
-              setKey(id);
-              console.log(key, "nftcard");
-            }}
-            className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
-          >
-            View
-          </button>
+          <Box>
+            <button
+              onClick={() => {
+                navigate("/ProjectDetails");
+                console.log(id);
+                setKey(id);
+                console.log(key, "nftcard");
+                console.log(author);
+              }}
+              className="linear m-1 rounded-[10px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
+            >
+              View
+            </button>
+            {author === data ? null : (
+              <button className="linear m-1 rounded-[10px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90">
+                Collab
+              </button>
+            )}
+          </Box>
         </div>
       </div>
     </Card>

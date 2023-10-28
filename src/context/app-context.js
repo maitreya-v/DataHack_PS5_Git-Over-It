@@ -10,6 +10,7 @@ export const AppProvider = ({ children }) => {
   const [key, setKey] = useState(0);
   const [keyHis, setKeyHis] = useState(0);
   const [histData, setHistData] = useState([]);
+  const [data, setData] = useState([]);
   return (
     <AppContext.Provider
       value={{
@@ -19,6 +20,8 @@ export const AppProvider = ({ children }) => {
         setHistData,
         keyHis,
         setKeyHis,
+        data,
+        setData,
       }}
     >
       {children}

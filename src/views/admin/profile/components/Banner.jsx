@@ -1,18 +1,19 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import avatar from "assets/img/avatars/avatar11.png";
 import banner from "assets/img/profile/banner.png";
 import Card from "components/card";
 import axios from "axios";
-import { Badge,Stack } from "@chakra-ui/react"
+import { Badge, Stack } from "@chakra-ui/react";
+import { useApp } from "context/app-context";
 
 const Banner = () => {
-  const [data, setData] = useState([]);
+  const { data, setData } = useApp();
   useEffect(() => {
     // Define an async function to make the GET request
     async function fetchData() {
       try {
         // Retrieve the token from local storage
-        const token = localStorage.getItem('token');
+        const token = localStorage.getItem("token");
 
         // Set the authorization header with the token
         const config = {
@@ -21,8 +22,11 @@ const Banner = () => {
           },
         };
 
-        const response = await axios.get('http://127.0.0.1:8000/accounts/user/', config);
-        console.log(response.data)
+        const response = await axios.get(
+          "http://127.0.0.1:8000/accounts/user/",
+          config
+        );
+        console.log(response.data);
         setData(response.data);
       } catch (err) {
         console.log(err);
@@ -31,33 +35,33 @@ const Banner = () => {
 
     // Call the async function to make the GET request
     fetchData();
-  }, []); 
+  }, []);
 
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
       <div
-        className="relative flex justify-center w-full h-32 mt-1 bg-cover rounded-xl"
+        className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover"
         style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-          <img className="w-full h-full rounded-full" src={avatar} alt="" />
+          <img className="h-full w-full rounded-full" src={avatar} alt="" />
         </div>
       </div>
 
       {/* Name and position */}
-      <div className="flex flex-col items-center mt-16">
+      <div className="mt-16 flex flex-col items-center">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           {data.name}
         </h4>
-        <div class="grid grid-cols-2 gap-4 mt-2">
-          <div className="flex items-center justify-center px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
+        <div class="mt-2 grid grid-cols-2 gap-4">
+          <div className="flex items-center justify-center rounded bg-green-500 px-2 py-1 text-xs font-semibold text-white">
             Content Writer
           </div>
-          <div className="flex items-center justify-center px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
+          <div className="flex items-center justify-center rounded bg-green-500 px-2 py-1 text-xs font-semibold text-white">
             Community Manager
           </div>
-          <div className="flex items-center justify-center px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
+          <div className="flex items-center justify-center rounded bg-green-500 px-2 py-1 text-xs font-semibold text-white">
             Product Manager
           </div>
         </div>

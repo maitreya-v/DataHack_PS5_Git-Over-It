@@ -44,7 +44,7 @@ function TopCreatorTable(props) {
       <div className="w-full overflow-x-scroll px-4 md:overflow-x-hidden">
         <table
           {...getTableProps()}
-          className="w-full min-w-[500px] overflow-x-scroll"
+          className="w-full min-w-[300px] overflow-x-scroll"
         >
           <thead>
             {headerGroups.map((headerGroup, index) => (
@@ -72,7 +72,7 @@ function TopCreatorTable(props) {
                     let data = "";
                     if (cell.column.Header === "Name") {
                       data = (
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center ">
                           <div className="h-[30px] w-[30px] rounded-full">
                             <img
                               src={cell.value[1]}
@@ -85,22 +85,24 @@ function TopCreatorTable(props) {
                           </p>
                         </div>
                       );
-                    } else if (cell.column.Header === "Artworks") {
-                      data = (
-                        <p className="text-md font-medium text-gray-600 dark:text-white">
-                          {cell.value}
-                        </p>
-                      );
-                    } else if (cell.column.Header === "Rating") {
-                      data = (
-                        <div class="mx-2 flex font-bold">
-                          <Progress width="w-16" value={cell.value} />
-                        </div>
-                      );
-                    } else if (cell.column.Header === "Invite") {
+                    }
+                    // else if (cell.column.Header === "Artworks") {
+                    //   data = (
+                    //     <p className="text-md font-medium text-gray-600 dark:text-white">
+                    //       {cell.value}
+                    //     </p>
+                    //   );
+                    // } else if (cell.column.Header === "Rating") {
+                    //   data = (
+                    //     <div class="mx-2 flex font-bold">
+                    //       <Progress width="w-16" value={cell.value} />
+                    //     </div>
+                    //   );
+                    // }
+                    else if (cell.column.Header === "Follow") {
                       data = (
                         <div class="text-black mx-2 flex font-bold">
-                          <Button>Invitation</Button>
+                          <Button>follow</Button>
                         </div>
                       );
                     }

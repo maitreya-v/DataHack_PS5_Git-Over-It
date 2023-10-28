@@ -141,27 +141,27 @@ const Marketplace = () => {
           />
         </div> */}
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {nftData.map((data, index) => (
-          <NftCard
-            key={index}
-            bidders={data.bidders}
-            title={data.title}
-            author={data.author}
-            price={data.price}
-            image={data.image}
-            id={data.id}
-          />
-        ))}
-      </div>
+          {nftData.map((data, index) => (
+            <NftCard
+              key={index}
+              bidders={data.bidders}
+              title={data.title}
+              author={data.author}
+              price={data.price}
+              image={data.image}
+              id={data.id}
+            />
+          ))}
+        </div>
 
         {/* Recenlty Added setion */}
-        {/* <div className="mb-5 mt-5 flex items-center justify-between px-[26px]">
+        <div className="mb-5 mt-5 flex items-center justify-between px-[26px]">
           <h4 className="text-2xl font-bold text-navy-700 dark:text-white">
             Recently Added
           </h4>
-        </div> */}
+        </div>
         {/* Recently Add NFTs */}
-        {/* <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
             title="Abstract Colors"
@@ -186,7 +186,7 @@ const Marketplace = () => {
             image={NFt6}
             id="6"
           />
-        </div> */}
+        </div>
       </div>
 
       {/* right side section */}

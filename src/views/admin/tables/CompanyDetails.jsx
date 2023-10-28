@@ -101,9 +101,9 @@ const CompanyDetails = () => {
           <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
             <Card extra={"mt-3 !z-5 overflow-hidden"}>
               {/* {selectedObject.map((data, index) => ( */}
-              <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
+              <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px]  dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-16 w-16 items-center justify-center">
+                  <div className="flex h-20 w-20 items-center justify-center">
                     <img
                       className="h-full w-full rounded-xl"
                       src={selectedObject.image}
@@ -139,7 +139,7 @@ const CompanyDetails = () => {
               <h3 className="ml-5 text-base font-bold text-navy-800 dark:text-white">
                 Requirements:
               </h3>
-              <UnorderedList className="mb-5">
+              <UnorderedList className="mb-5" sx={{ listStyleType: "none" }}>
                 {items.map((item, index) => (
                   <ListItem key={index} sx={{ m: 1 }}>
                     {item}
