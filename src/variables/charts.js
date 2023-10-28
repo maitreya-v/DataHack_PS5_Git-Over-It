@@ -150,17 +150,17 @@ export const pieChartData = [63, 25, 12];
 
 export const barChartDataWeeklyRevenue = [
   {
-    name: "PRODUCT A",
+    name: "Text Content",
     data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
     color: "#6AD2Fa",
   },
   {
-    name: "PRODUCT B",
+    name: "Image Content",
     data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
     color: "#4318FF",
   },
   {
-    name: "PRODUCT C",
+    name: "Links",
     data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
     color: "#EFF4FB",
   },
@@ -189,7 +189,7 @@ export const barChartOptionsWeeklyRevenue = {
     },
   },
   xaxis: {
-    categories: ["17", "18", "19", "20", "21", "22", "23", "24", "25"],
+    categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9"],
     show: false,
     labels: {
       show: true,
@@ -258,12 +258,12 @@ export const barChartOptionsWeeklyRevenue = {
 
 export const lineChartDataTotalSpent = [
   {
-    name: "Revenue",
+    name: "Views",
     data: [50, 64, 48, 66, 49, 68],
     color: "#4318FF",
   },
   {
-    name: "Profit",
+    name: "Likes",
     data: [30, 40, 24, 46, 20, 46],
     color: "#6AD2FF",
   },
@@ -322,7 +322,7 @@ export const lineChartOptionsTotalSpent = {
     },
     type: "text",
     range: undefined,
-    categories: ["SEP", "OCT", "NOV", "DEC", "JAN", "FEB"],
+    categories: ["MAY","JUNE","JULY","AUG","SEP", "OCT"],
   },
 
   yaxis: {

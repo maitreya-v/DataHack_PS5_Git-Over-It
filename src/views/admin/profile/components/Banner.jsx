@@ -2,33 +2,34 @@ import React from "react";
 import avatar from "assets/img/avatars/avatar11.png";
 import banner from "assets/img/profile/banner.png";
 import Card from "components/card";
+import { Badge,Stack } from "@chakra-ui/react"
 
 const Banner = () => {
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
       <div
-        className="relative mt-1 flex h-32 w-full justify-center rounded-xl bg-cover"
+        className="relative flex justify-center w-full h-32 mt-1 bg-cover rounded-xl"
         style={{ backgroundImage: `url(${banner})` }}
       >
         <div className="absolute -bottom-12 flex h-[87px] w-[87px] items-center justify-center rounded-full border-[4px] border-white bg-pink-400 dark:!border-navy-700">
-          <img className="h-full w-full rounded-full" src={avatar} alt="" />
+          <img className="w-full h-full rounded-full" src={avatar} alt="" />
         </div>
       </div>
 
       {/* Name and position */}
-      <div className="mt-16 flex flex-col items-center">
+      <div className="flex flex-col items-center mt-16">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           Adela Parkson
         </h4>
-        <div class="grid grid-cols-2 gap-4">
-          <div className="rounded bg-green-500 py-1 px-2 text-xs font-semibold text-white">
+        <div class="grid grid-cols-2 gap-4 mt-2">
+          <div className="flex items-center justify-center px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
             Content Writer
           </div>
-          <div className="rounded bg-green-500 py-1 px-2 text-xs font-semibold text-white">
+          <div className="flex items-center justify-center px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
             Community Manager
           </div>
-          <div className="rounded bg-green-500 py-1 px-2 text-xs font-semibold text-white">
+          <div className="flex items-center justify-center px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
             Product Manager
           </div>
         </div>
