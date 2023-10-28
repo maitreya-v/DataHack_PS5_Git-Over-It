@@ -15,6 +15,57 @@ import TopCreatorTable from "./components/TableTopCreators";
 import NftCard from "components/card/NftCard";
 
 const Marketplace = () => {
+  const nftData = [
+    {
+      bidders: [],
+      title: "Abstract Colors",
+      author: "Esthera Jackson",
+      price: "0.91",
+      image: NFt3,
+      id: 1,
+    },
+    {
+      bidders: [avatar1, avatar2, avatar3],
+      title: "ETH AI Brain",
+      author: "Nick Wilson",
+      price: "0.7",
+      image: NFt2,
+      id: 2,
+    },
+    {
+      bidders: [avatar1, avatar2, avatar3],
+      title: "Mesh Gradients",
+      author: "Will Smith",
+      price: "2.91",
+      image: NFt4,
+      id: 3,
+    },
+    {
+      bidders: [avatar1, avatar2, avatar3],
+      title: "Abstract Colors",
+      author: "Esthera Jackson",
+      price: "0.91",
+      image: NFt3,
+      id: 4,
+    },
+    {
+      bidders: [avatar1, avatar2, avatar3],
+      title: "ETH AI Brain",
+      author: "Nick Wilson",
+      price: "0.7",
+      image: NFt2,
+      id: 5,
+    },
+    {
+      bidders: [avatar1, avatar2, avatar3],
+      title: "Mesh Gradients",
+      author: "Will Smith",
+      price: "2.91",
+      image: NFt4,
+      id: 6,
+    },
+    // Add more NftCard data here
+  ];
   return (
     <div className="mt-3 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
       <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
@@ -63,7 +114,7 @@ const Marketplace = () => {
         </div>
 
         {/* NFTs trending card */}
-        <div className="z-20 grid grid-cols-1 gap-5 md:grid-cols-3">
+        {/* <div className="z-20 grid grid-cols-1 gap-5 md:grid-cols-3">
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
             title="Abstract Colors"
@@ -88,17 +139,29 @@ const Marketplace = () => {
             image={NFt4}
             id="3"
           />
-        </div>
+        </div> */}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {nftData.map((data, index) => (
+          <NftCard
+            key={index}
+            bidders={data.bidders}
+            title={data.title}
+            author={data.author}
+            price={data.price}
+            image={data.image}
+            id={data.id}
+          />
+        ))}
+      </div>
 
         {/* Recenlty Added setion */}
-        <div className="mb-5 mt-5 flex items-center justify-between px-[26px]">
+        {/* <div className="mb-5 mt-5 flex items-center justify-between px-[26px]">
           <h4 className="text-2xl font-bold text-navy-700 dark:text-white">
             Recently Added
           </h4>
-        </div>
-
+        </div> */}
         {/* Recently Add NFTs */}
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
+        {/* <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
             title="Abstract Colors"
@@ -123,17 +186,12 @@ const Marketplace = () => {
             image={NFt6}
             id="6"
           />
-        </div>
+        </div> */}
       </div>
 
       {/* right side section */}
 
       <div className="col-span-1 h-full w-full rounded-xl 2xl:col-span-1">
-        <TopCreatorTable
-          extra="mb-5"
-          tableData={tableDataTopCreators}
-          columnsData={tableColumnsTopCreators}
-        />
         <TopCreatorTable
           extra="mb-5"
           tableData={tableDataTopCreators}

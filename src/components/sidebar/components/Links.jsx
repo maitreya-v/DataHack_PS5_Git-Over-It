@@ -19,12 +19,12 @@ export function SidebarLinks(props) {
     return routes.map((route, index) => {
       if (
         route.layout === "/admin"
-        // || route.layout === "/auth"
+        || route.layout === "/auth"
         //  || route.layout === "/rtl"
       ) {
         return (
           <Link key={index} to={route.layout + "/" + route.path}>
-            <div className="relative mb-3 flex hover:cursor-pointer">
+            <div className="relative flex mb-3 hover:cursor-pointer">
               <li
                 className="my-[3px] flex cursor-pointer items-center px-8"
                 key={index}
