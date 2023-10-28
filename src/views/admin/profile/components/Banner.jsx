@@ -21,14 +21,30 @@ const Banner = () => {
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
           Adela Parkson
         </h4>
-        <p className="text-base font-normal text-gray-600">Product Manager</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div className="rounded bg-green-500 py-1 px-2 text-xs font-semibold text-white">
+            Content Writer
+          </div>
+          <div className="rounded bg-green-500 py-1 px-2 text-xs font-semibold text-white">
+            Community Manager
+          </div>
+          <div className="rounded bg-green-500 py-1 px-2 text-xs font-semibold text-white">
+            Product Manager
+          </div>
+        </div>
+        {/* <p className="text-base font-normal text-gray-600">Product Manager</p> */}
+        {/* <span
+      className={`bg-green-500 text-white py-1 px-2 rounded text-sm font-semibold`}
+    >
+      Product Manager
+    </span> */}
       </div>
 
       {/* Post followers */}
       <div className="mt-6 mb-3 flex gap-4 md:!gap-14">
         <div className="flex flex-col items-center justify-center">
           <p className="text-2xl font-bold text-navy-700 dark:text-white">17</p>
-          <p className="text-sm font-normal text-gray-600">Posts</p>
+          <p className="text-sm font-normal text-gray-600">Projects</p>
         </div>
         <div className="flex flex-col items-center justify-center">
           <p className="text-2xl font-bold text-navy-700 dark:text-white">

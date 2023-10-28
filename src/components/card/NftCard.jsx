@@ -42,7 +42,7 @@ const NftCard = ({ title, author, price, image, bidders, extra }) => {
 
           <div className="flex flex-row-reverse md:mt-2 lg:mt-0">
             <span className="z-0 ml-px inline-flex h-8 w-8 items-center justify-center rounded-full border-2 border-white bg-[#E0E5F2] text-xs text-navy-700 dark:!border-navy-800 dark:bg-gray-800 dark:text-white">
-              +5
+              +{bidders.length}
             </span>
             {bidders.map((avt, key) => (
               <span
@@ -69,7 +69,7 @@ const NftCard = ({ title, author, price, image, bidders, extra }) => {
             href=""
             className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
           >
-            Place Bid
+            View
           </button>
         </div>
       </div>
