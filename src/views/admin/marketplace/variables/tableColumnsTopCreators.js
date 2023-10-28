@@ -11,4 +11,8 @@ export const tableColumnsTopCreators = [
     Header: "Rating",
     accessor: "rating",
   },
+  {
+    Header: "Invite",
+    accessor: "invite",
+  },
 ];

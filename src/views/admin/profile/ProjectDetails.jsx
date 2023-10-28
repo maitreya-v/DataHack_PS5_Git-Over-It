@@ -15,6 +15,7 @@ import avatar1 from "assets/img/avatars/avatar1.png";
 import avatar2 from "assets/img/avatars/avatar2.png";
 import avatar3 from "assets/img/avatars/avatar3.png";
 import NftCard from "components/card/NftCard";
+import { Box } from "@chakra-ui/react";
 
 const ProjectDetails = ({}) => {
   const [heart, setHeart] = useState(true);
@@ -82,7 +83,7 @@ const ProjectDetails = ({}) => {
     // Add more NftCard data here
   ];
 
-  const selectedObject = nftData.find((object) => object.id === key);
+  const selectedObject = nftData.find((object) => object.id == key);
   console.log(nftData);
   console.log(key, "nftcard");
   return (
@@ -95,7 +96,7 @@ const ProjectDetails = ({}) => {
         >
           <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
             <Card
-              extra={`flex flex-col w-full h-full !p-4 3xl:p-![18px] bg-white ${selectedObject.extra}`}
+            //   extra={`flex flex-col w-full h-full !p-4 3xl:p-![18px] bg-white ${selectedObject.extra}`}
             >
               <div className="h-full w-full">
                 <div className="relative w-full">
@@ -152,12 +153,22 @@ const ProjectDetails = ({}) => {
                   <div className="flex">
                     <p className="mb-2 text-sm font-bold text-brand-500 dark:text-white"></p>
                   </div>
-                  <button
-                    href=""
-                    className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
                   >
-                    View
-                  </button>
+                    <button
+                      href=""
+                      className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
+                    >
+                      View
+                    </button>
+                    <button
+                      href=""
+                      className="linear rounded-[20px] bg-brand-900 px-4 py-2 text-base font-medium text-white transition duration-200 hover:bg-brand-800 active:bg-brand-700 dark:bg-brand-400 dark:hover:bg-brand-300 dark:active:opacity-90"
+                    >
+                      Like
+                    </button>
+                  </Box>
                 </div>
               </div>
             </Card>

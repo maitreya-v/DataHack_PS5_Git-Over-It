@@ -16,15 +16,15 @@ import NftCard from "components/card/NftCard";
 
 const Marketplace = () => {
   return (
-    <div className="grid h-full grid-cols-1 gap-5 mt-3 xl:grid-cols-2 2xl:grid-cols-3">
-      <div className="w-full col-span-1 h-fit xl:col-span-1 2xl:col-span-2">
+    <div className="mt-3 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
+      <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
         {/* NFt Banner */}
         {/* <Banner /> */}
 
         {/* NFt Header */}
-        <div className="flex flex-col justify-between px-4 mt-5 mb-4 md:flex-row md:items-center">
+        <div className="mt-5 mb-4 flex flex-col justify-between px-4 md:flex-row md:items-center">
           <h4 className="ml-1 text-2xl font-bold text-navy-700 dark:text-white">
-            Trending NFTs
+            Trending Projects
           </h4>
           <ul className="mt-4 flex items-center justify-between md:mt-0 md:justify-center md:!gap-5 2xl:!gap-12">
             <li>
@@ -70,6 +70,7 @@ const Marketplace = () => {
             author="Esthera Jackson"
             price="0.91"
             image={NFt3}
+            id="1"
           />
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
@@ -77,6 +78,7 @@ const Marketplace = () => {
             author="Nick Wilson"
             price="0.7"
             image={NFt2}
+            id="2"
           />
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
@@ -84,6 +86,7 @@ const Marketplace = () => {
             author="Will Smith"
             price="2.91"
             image={NFt4}
+            id="3"
           />
         </div>
 
@@ -102,6 +105,7 @@ const Marketplace = () => {
             author="Esthera Jackson"
             price="0.91"
             image={NFt4}
+            id="4"
           />
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
@@ -109,6 +113,7 @@ const Marketplace = () => {
             author="Nick Wilson"
             price="0.7"
             image={NFt5}
+            id="5"
           />
           <NftCard
             bidders={[avatar1, avatar2, avatar3]}
@@ -116,13 +121,14 @@ const Marketplace = () => {
             author="Will Smith"
             price="2.91"
             image={NFt6}
+            id="6"
           />
         </div>
       </div>
 
       {/* right side section */}
 
-      <div className="w-full h-full col-span-1 rounded-xl 2xl:col-span-1">
+      <div className="col-span-1 h-full w-full rounded-xl 2xl:col-span-1">
         <TopCreatorTable
           extra="mb-5"
           tableData={tableDataTopCreators}

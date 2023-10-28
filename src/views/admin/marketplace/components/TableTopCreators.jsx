@@ -1,3 +1,4 @@
+import { Button } from "@chakra-ui/react";
 import Card from "components/card";
 import Progress from "components/progress";
 import React, { useMemo } from "react";
@@ -94,6 +95,12 @@ function TopCreatorTable(props) {
                       data = (
                         <div class="mx-2 flex font-bold">
                           <Progress width="w-16" value={cell.value} />
+                        </div>
+                      );
+                    } else if (cell.column.Header === "Invite") {
+                      data = (
+                        <div class="text-black mx-2 flex font-bold">
+                          <Button>Invitation</Button>
                         </div>
                       );
                     }

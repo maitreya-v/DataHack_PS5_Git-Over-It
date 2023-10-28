@@ -12,6 +12,7 @@ import { Button } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useApp } from "context/app-context";
 import Sidebar from "components/sidebar";
+import { ListItem, UnorderedList } from "@chakra-ui/react";
 
 const CompanyDetails = () => {
   const location = useLocation();
@@ -81,6 +82,14 @@ const CompanyDetails = () => {
 
   const selectedObject = HistoryData.find((object) => object.id === keyHis);
   console.log(selectedObject);
+
+  const items = [
+    "Lorem ipsum dolor sit amet",
+    "Consectetur adipiscing elit",
+    "Integer molestie lorem at massa",
+    "Facilisis in pretium nisl aliquet",
+    "lorenmmm",
+  ];
   return (
     <>
       <Sidebar open={open} onClose={() => setOpen(false)} />
@@ -127,6 +136,18 @@ const CompanyDetails = () => {
                   </div>
                 </div>
               </div>
+              <h3 className="ml-5 text-base font-bold text-navy-800 dark:text-white">
+                Requirements:
+              </h3>
+              <UnorderedList className="mb-5">
+                {items.map((item, index) => (
+                  <ListItem key={index} sx={{ m: 1 }}>
+                    {item}
+                  </ListItem>
+                ))}
+                <Button className="mt-4">Test Fit</Button>
+              </UnorderedList>
+
               {/* ))} */}
             </Card>
           </div>
