@@ -13,19 +13,20 @@ import tableDataComplex from "./variables/tableDataComplex.json";
 import DevelopmentTable from "./components/DevelopmentTable";
 import ColumnsTable from "./components/ColumnsTable";
 import ComplexTable from "./components/ComplexTable";
+import HistoryCard from "./components/HistoryCard";
 
 const Tables = () => {
   return (
     <div>
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
+      <HistoryCard/>
+      {/* <div className="grid h-full grid-cols-1 gap-5 mt-5 md:grid-cols-2">
         <DevelopmentTable
           columnsData={columnsDataDevelopment}
           tableData={tableDataDevelopment}
         />
         <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} />
-      </div>
-
-      <div className="mt-5 grid h-full grid-cols-1 gap-5 md:grid-cols-2">
+      </div> */}
+      {/* <div className="grid h-full grid-cols-1 gap-5 mt-5 md:grid-cols-2">
         <ColumnsTable
           columnsData={columnsDataColumns}
           tableData={tableDataColumns}
@@ -35,7 +36,7 @@ const Tables = () => {
           columnsData={columnsDataComplex}
           tableData={tableDataComplex}
         />
-      </div>
+      </div> */}
     </div>
   );
 };
