@@ -22,6 +22,8 @@ const ProjectDetails = ({}) => {
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
+  const { setKey, key } = useApp();
+
   React.useEffect(() => {
     window.addEventListener("resize", () =>
       window.innerWidth < 1200 ? setOpen(false) : setOpen(true)
@@ -80,8 +82,9 @@ const ProjectDetails = ({}) => {
     // Add more NftCard data here
   ];
 
-  const selectedObject = nftData.find((object) => object.id === 2);
+  const selectedObject = nftData.find((object) => object.id === key);
   console.log(nftData);
+  console.log(key, "nftcard");
   return (
     <>
       <Sidebar open={open} onClose={() => setOpen(false)} />

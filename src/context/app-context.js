@@ -7,8 +7,12 @@ const AppContext = createContext(defaultProviderValues);
 
 export const AppProvider = ({ children }) => {
   // const [nftData, setNftData] = useState([]);
-  const [key, setKey] = useState([]);
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+  const [key, setKey] = useState(0);
+  return (
+    <AppContext.Provider value={{ key, setKey }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export const useApp = () => useContext(AppContext);
