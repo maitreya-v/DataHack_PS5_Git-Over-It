@@ -1,10 +1,38 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import avatar from "assets/img/avatars/avatar11.png";
 import banner from "assets/img/profile/banner.png";
 import Card from "components/card";
+import axios from "axios";
 import { Badge,Stack } from "@chakra-ui/react"
 
 const Banner = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    // Define an async function to make the GET request
+    async function fetchData() {
+      try {
+        // Retrieve the token from local storage
+        const token = localStorage.getItem('token');
+
+        // Set the authorization header with the token
+        const config = {
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        };
+
+        const response = await axios.get('http://127.0.0.1:8000/accounts/user/', config);
+        console.log(response.data)
+        setData(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    // Call the async function to make the GET request
+    fetchData();
+  }, []); 
+
   return (
     <Card extra={"items-center w-full h-full p-[16px] bg-cover"}>
       {/* Background and profile */}
@@ -20,7 +48,7 @@ const Banner = () => {
       {/* Name and position */}
       <div className="flex flex-col items-center mt-16">
         <h4 className="text-xl font-bold text-navy-700 dark:text-white">
-          Adela Parkson
+          {data.name}
         </h4>
         <div class="grid grid-cols-2 gap-4 mt-2">
           <div className="flex items-center justify-center px-2 py-1 text-xs font-semibold text-white bg-green-500 rounded">
