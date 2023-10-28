@@ -30,8 +30,13 @@ import { Box, Input } from "@chakra-ui/react";
 import { useDropzone } from "react-dropzone";
 import { useDisclosure } from "@chakra-ui/hooks";
 import Progress from "components/progress";
+import { useNavigate } from "react-router-dom";
+import { useApp } from "context/app-context";
 
 const ProfileOverview = () => {
+  const navigate = useNavigate();
+  const { setKey, key } = useApp();
+
   const nftData = [
     {
       bidders: [],
@@ -39,6 +44,7 @@ const ProfileOverview = () => {
       author: "Esthera Jackson",
       price: "0.91",
       image: NFt3,
+      id: 1,
     },
     {
       bidders: [avatar1, avatar2, avatar3],
@@ -46,6 +52,7 @@ const ProfileOverview = () => {
       author: "Nick Wilson",
       price: "0.7",
       image: NFt2,
+      id: 2,
     },
     {
       bidders: [avatar1, avatar2, avatar3],
@@ -53,6 +60,7 @@ const ProfileOverview = () => {
       author: "Will Smith",
       price: "2.91",
       image: NFt4,
+      id: 3,
     },
     {
       bidders: [avatar1, avatar2, avatar3],
@@ -60,6 +68,7 @@ const ProfileOverview = () => {
       author: "Esthera Jackson",
       price: "0.91",
       image: NFt3,
+      id: 4,
     },
     {
       bidders: [avatar1, avatar2, avatar3],
@@ -67,6 +76,7 @@ const ProfileOverview = () => {
       author: "Nick Wilson",
       price: "0.7",
       image: NFt2,
+      id: 5,
     },
     {
       bidders: [avatar1, avatar2, avatar3],
@@ -74,6 +84,7 @@ const ProfileOverview = () => {
       author: "Will Smith",
       price: "2.91",
       image: NFt4,
+      id: 6,
     },
     // Add more NftCard data here
   ];
@@ -243,6 +254,7 @@ const ProfileOverview = () => {
             author={data.author}
             price={data.price}
             image={data.image}
+            id={data.id}
           />
         ))}
       </div>
