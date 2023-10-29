@@ -11,104 +11,21 @@ import Card from "components/card";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { useApp } from "context/app-context";
+import jobData from "../variables/job_data.json";
 
 const HistoryCard = () => {
   const { setKey, key, keyHis, setKeyHis } = useApp();
   const navigate = useNavigate();
-  const HistoryData = [
-    {
-      image: Nft1,
-      companyName: "Company A",
-      jobRole: "Web Developer",
-      location: "New York",
-      stipend: "$4000/month",
-      id: 1,
-    },
-    {
-      image: Nft2,
-      companyName: "Company B",
-      jobRole: "Graphic Designer",
-      location: "Los Angeles",
-      stipend: "$2500/month",
-      id: 2,
-    },
-    {
-      image: Nft3,
-      companyName: "Company C",
-      jobRole: "Product Manager",
-      location: "San Francisco",
-      stipend: "$6000/month",
-      id: 3,
-    },
-    {
-      image: Nft4,
-      companyName: "Company D",
-      jobRole: "Data Analyst",
-      location: "Chicago",
-      stipend: "$3500/month",
-      id: 4,
-    },
-    {
-      image: Nft5,
-      companyName: "Company E",
-      jobRole: "Marketing Specialist",
-      location: "Houston",
-      stipend: "$3000/month",
-      id: 5,
-    },
-    {
-      image: Nft6,
-      companyName: "Company F",
-      jobRole: "Software Engineer",
-      location: "Seattle",
-      stipend: "$5000/month",
-      id: 6,
-    },
-  ];
-  // setHistData([
-  //   {
-  //     image: Nft1,
-  //     companyName: "Company A",
-  //     jobRole: "Web Developer",
-  //     location: "New York",
-  //     stipend: "$4000/month",
-  //   },
-  //   {
-  //     image: Nft2,
-  //     companyName: "Company B",
-  //     jobRole: "Graphic Designer",
-  //     location: "Los Angeles",
-  //     stipend: "$2500/month",
-  //   },
-  //   {
-  //     image: Nft3,
-  //     companyName: "Company C",
-  //     jobRole: "Product Manager",
-  //     location: "San Francisco",
-  //     stipend: "$6000/month",
-  //   },
-  //   {
-  //     image: Nft4,
-  //     companyName: "Company D",
-  //     jobRole: "Data Analyst",
-  //     location: "Chicago",
-  //     stipend: "$3500/month",
-  //   },
-  //   {
-  //     image: Nft5,
-  //     companyName: "Company E",
-  //     jobRole: "Marketing Specialist",
-  //     location: "Houston",
-  //     stipend: "$3000/month",
-  //   },
-  //   {
-  //     image: Nft6,
-  //     companyName: "Company F",
-  //     jobRole: "Software Engineer",
-  //     location: "Seattle",
-  //     stipend: "$5000/month",
-  //   },
-  // ]);
+  function limitTo3Words(text) {
+    const words = text.split(" ");
+
+    if (words.length <= 3) {
+      return text;
+    }
+
+    const truncatedText = words.slice(0, 3).join(" ");
+    return `${truncatedText}...`;
+  }
 
   return (
     <Card extra={"mt-3 !z-5 overflow-hidden"}>
@@ -124,38 +41,36 @@ const HistoryCard = () => {
 
       {/* History CardData */}
 
-      {HistoryData.map((data, index) => (
+      {jobData.map((data, index) => (
         <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
           <div className="flex items-center gap-3">
-            <div className="flex h-16 w-16 items-center justify-center">
+            <div className="flex items-center justify-center w-8 h-8">
               <img
-                className="h-full w-full rounded-xl"
+                className="w-full h-full rounded-xl"
                 src={data.image}
                 alt=""
               />
             </div>
             <div className="flex flex-col">
               <h5 className="text-base font-bold text-navy-700 dark:text-white">
-                {" "}
-                {data.companyName}
+                {limitTo3Words(data.company)}
               </h5>
               <p className="mt-1 text-sm font-normal text-gray-600">
-                {" "}
-                {data.jobRole}{" "}
+                {limitTo3Words(data.jobTitle)}
               </p>
             </div>
           </div>
 
-          <div className="mt-1 items-center justify-center text-navy-700 dark:text-white">
+          <div className="items-center justify-center mt-1 text-navy-700 dark:text-white">
             {/* <div>
               <FaEthereum />
             </div> */}
-            <div className="ml-1 flex items-center text-sm font-bold text-navy-700 dark:text-white">
+            <div className="flex items-center ml-1 text-sm font-bold text-navy-700 dark:text-white">
               {/* <p> {} </p> */}
-              {data.stipend}
+              {limitTo3Words(data.role)}
             </div>
-            <div className="ml-2 flex items-center text-sm font-normal text-gray-600 dark:text-white">
-              <p>{data.location}</p>
+            <div className="flex items-center ml-2 text-sm font-normal text-gray-600 dark:text-white">
+              <p>{data.salary}</p>
               {/* <p className="ml-1">ago</p> */}
             </div>
           </div>
