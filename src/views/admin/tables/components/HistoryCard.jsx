@@ -44,11 +44,11 @@ const HistoryCard = () => {
       {jobData.map((data, index) => (
         <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px] hover:shadow-2xl dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
           <div className="flex items-center gap-3">
-            <div className="flex items-center justify-center w-8 h-8">
+            <div className="flex h-8 w-8 items-center justify-center">
               <img
-                className="w-full h-full rounded-xl"
+                className="h-full w-full rounded-xl"
                 src={data.image}
-                alt=""
+                // alt={(key = data.id)}
               />
             </div>
             <div className="flex flex-col">
@@ -61,15 +61,15 @@ const HistoryCard = () => {
             </div>
           </div>
 
-          <div className="items-center justify-center mt-1 text-navy-700 dark:text-white">
+          <div className="mt-1 items-center justify-center text-navy-700 dark:text-white">
             {/* <div>
               <FaEthereum />
             </div> */}
-            <div className="flex items-center ml-1 text-sm font-bold text-navy-700 dark:text-white">
+            <div className="ml-1 flex items-center text-sm font-bold text-navy-700 dark:text-white">
               {/* <p> {} </p> */}
               {limitTo3Words(data.role)}
             </div>
-            <div className="flex items-center ml-2 text-sm font-normal text-gray-600 dark:text-white">
+            <div className="ml-2 flex items-center text-sm font-normal text-gray-600 dark:text-white">
               <p>{data.salary}</p>
               {/* <p className="ml-1">ago</p> */}
             </div>

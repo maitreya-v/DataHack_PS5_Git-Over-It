@@ -114,7 +114,7 @@ export default function SignIn() {
     console.log("handleResume");
     event.preventDefault();
     const url =
-      "https://dccb-2409-40c0-47-d56c-7986-961c-6208-657.ngrok-free.app/resume_parse";
+      "https://00de-2409-40c0-47-d56c-9590-8abf-c2a4-649c.ngrok-free.app/resume_parse";
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
