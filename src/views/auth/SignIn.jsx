@@ -114,7 +114,7 @@ export default function SignIn() {
     console.log("handleResume");
     event.preventDefault();
     const url =
-      "https://9854-2409-40c0-7c-3581-2ce1-b740-d564-1037.ngrok-free.app/resume_parse";
+      "https://dccb-2409-40c0-47-d56c-7986-961c-6208-657.ngrok-free.app/resume_parse";
     const formData = new FormData();
     formData.append("file", file);
     formData.append("fileName", file.name);
@@ -161,23 +161,24 @@ export default function SignIn() {
             console.log(response);
           });
       }
-      const user_data = {
-        name: localStorage.getItem("name"),
-        email: localStorage.getItem("email"),
-        phone_no: localStorage.getItem("phone_no"),
-        password: localStorage.getItem("password"),
-        job_type: "CW",
-        skills: [allTags.join(", ")],
-      };
-      axios
-        .put("http://127.0.0.1:8000/accounts/users", user_data, {
-          headers: {
-            Authorization: `Token ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-        });
+      localStorage.setItem("skills", allTags.join(", "));
+      // const user_data = {
+      //   name: localStorage.getItem("name"),
+      //   email: localStorage.getItem("email"),
+      //   phone_no: localStorage.getItem("phone_no"),
+      //   password: localStorage.getItem("password"),
+      //   job_type: "CW",
+      //   skills: allTags.join(", "),
+      // };
+      // axios
+      //   .put("http://127.0.0.1:8000/accounts/users", user_data, {
+      //     headers: {
+      //       Authorization: `Token ${localStorage.getItem("token")}`,
+      //     },
+      //   })
+      //   .then((response) => {
+      //     console.log(response);
+      //   });
     });
   }
 
