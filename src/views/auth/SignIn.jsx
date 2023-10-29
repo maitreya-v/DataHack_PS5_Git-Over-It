@@ -16,10 +16,12 @@ import {
 import { Button, useDisclosure } from "@chakra-ui/react";
 import { useDropzone } from "react-dropzone";
 import { Box, Progress } from "@chakra-ui/react";
+import { data } from "autoprefixer";
 
 export default function SignIn() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-
+  const [tags, setTags] = useState([]);
+  const [projects, setProjects] = useState([]);
   const [uploadedFiles, setUploadedFiles] = React.useState([]);
   const [uploadProgress, setUploadProgress] = React.useState(0);
 
@@ -71,6 +73,10 @@ export default function SignIn() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("phone_no", user.phone_no);
+    localStorage.setItem("password", user.password);
+    localStorage.setItem("name", user.name);
     console.log("handleSubmit");
     try {
       const response = await axios.post(
@@ -84,10 +90,10 @@ export default function SignIn() {
       );
 
       localStorage.setItem("token", response.data.token);
-      localStorage.setItem("email", response.data.email);
+      // localStorage.setItem("email", response.data.email);
       console.log(response.data.token);
       console.log(response.data);
-      onOpen();
+      // onOpen();
     } catch (error) {
       if (error.response) {
         console.error("Server error status:", error.response.status);
@@ -98,41 +104,98 @@ export default function SignIn() {
     }
   };
 
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [file, setFile] = useState();
 
-  const handleFileChange = (e) => {
-    console.log(e.target.files);
-    setSelectedFile(e.target.files[0]);
-  };
-  const handleResume = (e) => {
+  function handleFileChange(event) {
+    setFile(event.target.files[0]);
+  }
+
+  function handleResume(event) {
+    console.log("handleResume");
+    event.preventDefault();
+    const url =
+      "https://9854-2409-40c0-7c-3581-2ce1-b740-d564-1037.ngrok-free.app/resume_parse";
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("file", file);
+    formData.append("fileName", file.name);
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    axios.post(url, formData, config).then((response) => {
+      console.log(response.data);
+      const allTags = response.data
+        .map((jsonString) => {
+          const project = JSON.parse(jsonString);
+          return project["Project Tags"];
+        })
+        .flat(); // Combine all the tag arrays into one
 
-    fetch(
-      "https://a1c5-2409-40c0-7c-3581-9126-78d3-40f0-21ae.ngrok-free.app/resume_parse",
-      {
-        method: "POST",
-        body: formData,
+      // setTags(allTags);
+
+      const projectObjects = response.data.map((jsonString) =>
+        JSON.parse(jsonString)
+      );
+      const transformedProjects = [];
+      console.log(projectObjects);
+
+      for (const project of projectObjects) {
+        // console.log(project);
+        console.log(localStorage.getItem("email"));
+        const transformedProject = {
+          name: project.Title,
+          users: [localStorage.getItem("email")],
+          skills_used: allTags.join(", "), // Join the tags into a comma-separated string
+          description: project.Description,
+        };
+        // console.log(transformedProject);
+        console.log("before axios");
+        axios
+          .post("http://127.0.0.1:8000/groups/projects/", transformedProject, {
+            headers: {
+              Authorization: `Token ${localStorage.getItem("token")}`,
+            },
+          })
+          .then((response) => {
+            console.log(response);
+          });
       }
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error("Error uploading file:", error);
-      });
-  };
+      const user_data = {
+        name: localStorage.getItem("name"),
+        email: localStorage.getItem("email"),
+        phone_no: localStorage.getItem("phone_no"),
+        password: localStorage.getItem("password"),
+        job_type: "CW",
+        skills: [allTags.join(", ")],
+      };
+      axios
+        .put("http://127.0.0.1:8000/accounts/users", user_data, {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        });
+    });
+  }
+
   return (
-    <div className="16 mt- mb-4 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
+    <div
+    // className="16 mt- mb-4 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start"
+    >
+      <form onSubmit={handleResume}>
+        <h1>React File Upload</h1>
+        <input type="file" onChange={handleFileChange} />
+        <button type="submit">Upload</button>
+                
+      </form>
+
       <div className="mt-[5vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
           Sign In
         </h4>
-        {/* <p className="ml-1 text-base text-gray-600 mb-9">
-          Enter your email and password to sign in!
-        </p> */}
         <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
           <div className="rounded-full text-xl">
             <FcGoogle />
@@ -146,7 +209,6 @@ export default function SignIn() {
           <p className="text-base text-gray-600 dark:text-white"> or </p>
           <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
         </div>
-        {/* Name */}
         <label class="mb-2 block text-sm font-bold text-gray-700" for="name">
           Name
         </label>
@@ -161,7 +223,6 @@ export default function SignIn() {
           required
         />
 
-        {/* Name */}
         <label
           class="mb-2 block text-sm font-bold text-gray-700"
           for="phone_no"
@@ -177,7 +238,6 @@ export default function SignIn() {
           type="number"
         />
 
-        {/* Email */}
         <label class="mb-2 block text-sm font-bold text-gray-700" for="email">
           Email
         </label>
@@ -192,7 +252,6 @@ export default function SignIn() {
           required
         />
 
-        {/* Password */}
         <label
           class="mb-2 block text-sm font-bold text-gray-700"
           for="password"
@@ -209,7 +268,6 @@ export default function SignIn() {
           required
         />
 
-        {/* Confirm Password */}
         <label
           class="mb-2 block text-sm font-bold text-gray-700"
           for="confirm_password"
@@ -226,7 +284,6 @@ export default function SignIn() {
           required
         />
 
-        {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
             <Checkbox />
@@ -248,7 +305,6 @@ export default function SignIn() {
         >
           Sign In
         </button>
-        {/* <Button onClick={onOpen}>Open Modal</Button> */}
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
@@ -283,44 +339,6 @@ export default function SignIn() {
                 >
                   Upload Files
                 </label>
-                {/* <div {...getRootProps()}>
-                  <input {...getInputProps()} />
-                  <Box
-                    p={4}
-                    borderWidth={2}
-                    borderColor="gray.300"
-                    borderStyle="dashed"
-                    borderRadius="md"
-                    textAlign="center"
-                    cursor="pointer"
-                  >
-                    <p>Drag & Drop files here, or click to select files</p>
-                  </Box>
-                </div>
-                {uploadedFiles.length > 0 && (
-                  <div>
-                    <h2>Selected Files:</h2>
-                    <ul>
-                      {uploadedFiles.map((file) => (
-                        <li key={file.name}>{file.name}</li>
-                      ))}
-                    </ul>
-                    <Button
-                      onClick={handleUpload}
-                      colorScheme="teal"
-                      sx={{ mb: 2 }}
-                    >
-                      Submit
-                    </Button>
-                    {uploadProgress > 0 && (
-                      <Progress
-                        value={uploadProgress}
-                        size="md"
-                        colorScheme="teal"
-                      />
-                    )}
-                  </div>
-                )} */}
                 <input
                   class="mb-3 block w-full appearance-none rounded border py-3 px-4 leading-tight text-gray-700 focus:outline-none "
                   id="grid-first-name"
