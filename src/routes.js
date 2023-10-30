@@ -21,14 +21,14 @@ import {
 
 const routes = [
   {
-    name: "Main Dashboard",
+    name: "Dashboard",
     layout: "/admin",
     path: "default",
     icon: <MdHome className="w-6 h-6" />,
     component: <MainDashboard />,
   },
   {
-    name: "NFT Marketplace",
+    name: "Overview",
     layout: "/admin",
     path: "nft-marketplace",
     icon: <MdOutlineShoppingCart className="w-6 h-6" />,
@@ -36,7 +36,7 @@ const routes = [
     secondary: true,
   },
   {
-    name: "Data Tables",
+    name: "Job Opportunities",
     layout: "/admin",
     icon: <MdBarChart className="w-6 h-6" />,
     path: "data-tables",

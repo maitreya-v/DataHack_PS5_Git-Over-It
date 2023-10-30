@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Nft2 from "assets/img/nfts/Nft2.png";
 import Nft1 from "assets/img/nfts/Nft1.png";
@@ -6,6 +6,7 @@ import Nft3 from "assets/img/nfts/Nft3.png";
 import Nft4 from "assets/img/nfts/Nft4.png";
 import Nft5 from "assets/img/nfts/Nft5.png";
 import Nft6 from "assets/img/nfts/Nft6.png";
+import Swal from "sweetalert2";
 
 import { FaEthereum } from "react-icons/fa";
 import Card from "components/card";
@@ -20,6 +21,9 @@ const CompanyDetails = () => {
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
+  const [resources, setResources] = useState({});
+  const [recommend, setRecommend] = useState({});
+  const [testMatch, setTestMatch] = useState({});
 
   const { setKey, key, keyHis, setKeyHis } = useApp();
 
@@ -107,16 +111,49 @@ const CompanyDetails = () => {
     // Make a POST request using Axios
     axios
       .post(
-        "https://aba6-2409-40c0-47-d56c-9590-8abf-c2a4-649c.ngrok-free.app/compare",
+        "https://0f41-2409-40c0-7b-18d0-4590-7720-269b-bf08.ngrok-free.app/compare",
         requestData
       )
       .then((response) => {
         // Handle the response here
         console.log("POST request successful:", response.data);
+        setTestMatch(response.data);
       })
       .catch((error) => {
         // Handle errors here
         console.error("Error making POST request:", error);
+      });
+  };
+
+  const handleCourses = () => {
+    var resources = {
+      domain: localStorage.getItem("prioritySkills"),
+    };
+    axios
+      .post(
+        "https://0f41-2409-40c0-7b-18d0-4590-7720-269b-bf08.ngrok-free.app/resources",
+        resources
+      )
+      .then((response) => {
+        console.log(response);
+        setResources(response.data);
+        Swal.fire(response.data)
+      });
+  };
+  
+  const handleIdeas = () => {
+    var resources = {
+      domain: localStorage.getItem("prioritySkills"),
+    };
+    axios
+      .post(
+        "https://0f41-2409-40c0-7b-18d0-4590-7720-269b-bf08.ngrok-free.app/recommend",
+        resources
+      )
+      .then((response) => {
+        console.log(response);
+        setRecommend(response.data);
+        Swal.fire(response.data)
       });
   };
 
@@ -133,9 +170,9 @@ const CompanyDetails = () => {
               {/* {selectedObject.map((data, index) => ( */}
               <div className="flex h-full w-full items-start justify-between bg-white px-3 py-[20px]  dark:!bg-navy-800 dark:shadow-none dark:hover:!bg-navy-700">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-20 w-20 items-center justify-center">
+                  <div className="flex items-center justify-center w-20 h-20">
                     <img
-                      className="h-full w-full rounded-xl"
+                      className="w-full h-full rounded-xl"
                       src={HistoryData[selectedObject.id % 6].image}
                       alt=""
                     />
@@ -152,15 +189,15 @@ const CompanyDetails = () => {
                   </div>
                 </div>
 
-                <div className="mt-1 items-center justify-center text-navy-700 dark:text-white">
+                <div className="items-center justify-center mt-1 text-navy-700 dark:text-white">
                   {/* <div>
               <FaEthereum />
             </div> */}
-                  <div className="ml-1 flex items-center text-sm font-bold text-navy-700 dark:text-white">
+                  <div className="flex items-center ml-1 text-sm font-bold text-navy-700 dark:text-white">
                     {/* <p> {} </p> */}
                     {selectedObject.salary}
                   </div>
-                  <div className="ml-2 flex items-center text-sm font-normal text-gray-600 dark:text-white">
+                  <div className="flex items-center ml-2 text-sm font-normal text-gray-600 dark:text-white">
                     <p>{selectedObject.location}</p>
                     {/* <p className="ml-1">ago</p> */}
                   </div>
@@ -176,12 +213,12 @@ const CompanyDetails = () => {
                 Requirements:
               </h3>
               <UnorderedList
-                className="mb-5 grid grid-cols-3 gap-4"
+                className="grid grid-cols-3 gap-4 mb-5"
                 sx={{ listStyleType: "none" }}
               >
                 {selectedObject.tags.map((item, index) => (
                   <div
-                    className="flex items-center justify-center rounded bg-green-500 px-2 py-1 text-sm font-semibold text-white"
+                    className="flex items-center justify-center px-2 py-1 text-sm font-semibold text-white bg-green-500 rounded"
                     style={{ backgroundColor: "rgba(59, 130, 246, 0.5)" }}
                   >
                     <ListItem key={index} sx={{ m: 1 }}>
@@ -194,8 +231,24 @@ const CompanyDetails = () => {
                   Test Fit
                 </Button>
               </UnorderedList>
+              {testMatch.sim}
+              <br/>
+              {testMatch.tags[0]}
+              <br/>
+              {testMatch.tags[1]}
+              <br/>
+              {testMatch.tags[2]}
+              <br/>
+              {testMatch.tags[3]}
+              <br/>
+              {testMatch.tags[4]}
+              <br/>
+              {testMatch.tags[5]}
 
-              {/* ))} */}
+              <Button onClick={handleIdeas}>Project Ideas</Button>
+              <Button onClick={handleCourses}>Courses</Button>
+              {/* {resources?.data ?? "No data available"}
+              {recommend?.data ?? "No data available"} */}
             </Card>
           </div>
         </main>
