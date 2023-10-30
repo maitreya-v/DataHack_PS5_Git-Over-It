@@ -125,10 +125,11 @@ const ProfileOverview = () => {
       });
     }, 500);
   };
+  console.log(localStorage.getItem("skills"));
 
   return (
-    <div className="flex flex-col w-full gap-5">
-      <div className="flex flex-col gap-5 mt-3 w-ful h-fit lg:grid lg:grid-cols-12">
+    <div className="flex w-full flex-col gap-5">
+      <div className="w-ful mt-3 flex h-fit flex-col gap-5 lg:grid lg:grid-cols-12">
         <div className="col-span-4 lg:!mb-0">
           <Banner />
         </div>
@@ -141,7 +142,7 @@ const ProfileOverview = () => {
         <div className="z-0 col-span-5 lg:!mb-0">{/* <Upload /> */}</div>
       </div>
       {/* all project & ... */}
-      <div className="flex flex-col justify-between px-4 mt-5 mb-4 md:flex-row md:items-center">
+      <div className="mt-5 mb-4 flex flex-col justify-between px-4 md:flex-row md:items-center">
         <h4 className="ml-1 text-2xl font-bold text-navy-700 dark:text-white">
           Your Projects
         </h4>
@@ -164,19 +165,38 @@ const ProfileOverview = () => {
             <ModalCloseButton />
             <ModalBody>
               <div>
-              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-        Title
-      </label>
-      <input class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none " id="grid-first-name" type="text" placeholder="project title"></input>
-      
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-        Description
-      </label>
-      <input class="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none " id="grid-first-name" type="text" placeholder="my project description"></input>
-      
-      <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
-        Upload Files
-      </label>
+                <label
+                  class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+                  for="grid-first-name"
+                >
+                  Title
+                </label>
+                <input
+                  class="mb-3 block w-full appearance-none rounded border py-3 px-4 leading-tight text-gray-700 focus:outline-none "
+                  id="grid-first-name"
+                  type="text"
+                  placeholder="project title"
+                ></input>
+
+                <label
+                  class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+                  for="grid-first-name"
+                >
+                  Description
+                </label>
+                <input
+                  class="mb-3 block w-full appearance-none rounded border py-3 px-4 leading-tight text-gray-700 focus:outline-none "
+                  id="grid-first-name"
+                  type="text"
+                  placeholder="my project description"
+                ></input>
+
+                <label
+                  class="mb-2 block text-xs font-bold uppercase tracking-wide text-gray-700"
+                  for="grid-first-name"
+                >
+                  Upload Files
+                </label>
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
                   <Box
@@ -215,8 +235,10 @@ const ProfileOverview = () => {
             </ModalBody>
 
             <ModalFooter>
-              <Button variant="ghost" onClick={onClose}>Close</Button>
-              <Button colorScheme="blue" mr={3} >
+              <Button variant="ghost" onClick={onClose}>
+                Close
+              </Button>
+              <Button colorScheme="blue" mr={3}>
                 Add
               </Button>
             </ModalFooter>

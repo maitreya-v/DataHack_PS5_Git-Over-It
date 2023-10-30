@@ -17,6 +17,13 @@ import Sidebar from "components/sidebar";
 import { ListItem, UnorderedList } from "@chakra-ui/react";
 import jobData from "../tables/variables/job_data.json";
 
+// function getRandomColor() {
+//   const r = Math.floor(Math.random() * 256);
+//   const g = Math.floor(Math.random() * 256);
+//   const b = Math.floor(Math.random() * 256);
+//   return `rgb(${r}, ${g}, ${b})`;
+// }
+
 const CompanyDetails = () => {
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
@@ -96,7 +103,7 @@ const CompanyDetails = () => {
     "Facilisis in pretium nisl aliquet",
     "lorenmmm",
   ];
-  console.log(typeof localStorage.getItem("skills"));
+  console.log(localStorage.getItem("skills"));
   console.log(typeof selectedObject.tags);
 
   const objectString = JSON.stringify(selectedObject.tags);
@@ -195,7 +202,7 @@ const CompanyDetails = () => {
             </div> */}
                   <div className="flex items-center ml-1 text-sm font-bold text-navy-700 dark:text-white">
                     {/* <p> {} </p> */}
-                    {selectedObject.salary}
+                    Salary : {selectedObject.salary}
                   </div>
                   <div className="flex items-center ml-2 text-sm font-normal text-gray-600 dark:text-white">
                     <p>{selectedObject.location}</p>
@@ -206,10 +213,10 @@ const CompanyDetails = () => {
               <h2 className="ml-5 text-base font-bold text-navy-800 dark:text-white">
                 Description:
               </h2>
-              <h3 className="ml-5 text-base text-navy-800 dark:text-white">
-                {selectedObject.description}
+              <h3 className="mt-3 ml-5 text-base text-navy-800 dark:text-white">
+                {selectedObject.description.slice(0, 800) + "..."}
               </h3>
-              <h3 className="ml-5 text-base font-bold text-navy-800 dark:text-white">
+              <h3 className="mt-2 mb-2 ml-5 text-base font-bold text-navy-800 dark:text-white">
                 Requirements:
               </h3>
               <UnorderedList

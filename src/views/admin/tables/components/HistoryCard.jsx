@@ -27,6 +27,57 @@ const HistoryCard = () => {
     return `${truncatedText}...`;
   }
 
+  const HistoryData = [
+    {
+      image: Nft1,
+      companyName: "Company A",
+      jobRole: "Web Developer",
+      location: "New York",
+      stipend: "$4000/month",
+      id: 1,
+    },
+    {
+      image: Nft2,
+      companyName: "Company B",
+      jobRole: "Graphic Designer",
+      location: "Los Angeles",
+      stipend: "$2500/month",
+      id: 2,
+    },
+    {
+      image: Nft3,
+      companyName: "Company C",
+      jobRole: "Product Manager",
+      location: "San Francisco",
+      stipend: "$6000/month",
+      id: 3,
+    },
+    {
+      image: Nft4,
+      companyName: "Company D",
+      jobRole: "Data Analyst",
+      location: "Chicago",
+      stipend: "$3500/month",
+      id: 4,
+    },
+    {
+      image: Nft5,
+      companyName: "Company E",
+      jobRole: "Marketing Specialist",
+      location: "Houston",
+      stipend: "$3000/month",
+      id: 5,
+    },
+    {
+      image: Nft6,
+      companyName: "Company F",
+      jobRole: "Software Engineer",
+      location: "Seattle",
+      stipend: "$5000/month",
+      id: 6,
+    },
+  ];
+
   return (
     <Card extra={"mt-3 !z-5 overflow-hidden"}>
       {/* HistoryCard Header */}
@@ -48,6 +99,8 @@ const HistoryCard = () => {
               <img
                 className="w-full h-full rounded-xl"
                 src={data.image}
+                className="w-full h-full rounded-xl"
+                src={HistoryData[data.id % 6].image}
                 // alt={(key = data.id)}
               />
             </div>
