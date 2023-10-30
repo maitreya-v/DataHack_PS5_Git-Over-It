@@ -111,7 +111,7 @@ const HistoryCard = () => {
               <p className="mt-1 text-sm font-normal text-gray-600">
                 {limitTo3Words(data.jobTitle)}
               </p>
-            </div>4
+            </div>
           </div>
 
           <div className="items-center justify-center mt-1 text-navy-700 dark:text-white">
